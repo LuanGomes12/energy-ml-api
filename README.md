@@ -38,6 +38,7 @@ A API expõe um endpoint principal:
   "avg_temp": 19.5,
   "avg_humidity": 45.2
 }
+```
 
 ## 🔧 Como rodar localmente
 

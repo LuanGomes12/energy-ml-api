@@ -2,26 +2,35 @@
 
 Esta é uma aplicação completa de Ciência de Dados e Engenharia, que utiliza Inteligência Artificial para prever o consumo de energia residencial com base em fatores climáticos e temporais.
 
-## 🚀 Estrutura do Projeto
+# ⚡ Energy Consumption ML System
 
-* **Tratamento de Dados:** Limpeza e análise exploratória realizadas em notebooks Python (`pandas`, `matplotlib`).
-* **Modelo de ML:** Regressão treinada com `scikit-learn` e salva em formato `.pkl` via `joblib`.
-* **API:** Interface de comunicação desenvolvida com **FastAPI**.
-* **Nuvem:** Hospedagem e deploy contínuo realizados no **Railway**.
+Este projeto é uma solução completa de Engenharia de Dados e Inteligência Artificial para prever o consumo de energia residencial. O sistema conta com um modelo de Machine Learning exposto via API e um Dashboard interativo para visualização dos resultados.
+
+## 🔗 Links do Projeto (Online)
+* **Dashboard Interativo:** [https://energy-ml-api-production.up.railway.app/](https://energy-ml-api-production.up.railway.app/)
+* **API Documentation (Swagger):** [(https://web-production-31b64.up.railway.app/docs](https://web-production-31b64.up.railway.app/docs)
+
+## 🏗️ Arquitetura do Sistema
+O projeto foi dividido em dois serviços independentes hospedados no **Railway** (PaaS), seguindo boas práticas de separação de responsabilidades:
+
+1.  **Back-end (API):** Desenvolvido com **FastAPI**, carrega o modelo de ML e processa as predições.
+2.  **Front-end (Dashboard):** Desenvolvido com **Streamlit**, oferece uma interface amigável para simulação de dados e consulta à API.
+
+## 🚀 Componentes Técnicos
+* **Tratamento de Dados:** Limpeza, engenharia de features e análise exploratória realizadas em notebooks Python (`pandas`, `matplotlib`).
+* **Modelo de ML:** Regressão treinada com `scikit-learn` (ajustado para as variáveis climáticas de Sobral/CE e base de dados original) e exportada via `joblib`.
+* **Monitoramento:** Implementação de logs de observabilidade no Railway para rastreio de requisições em tempo real.
 
 ## 🛠️ Tecnologias Utilizadas
-
 * **Linguagem:** Python 3.10+
 * **Bibliotecas de ML:** Scikit-Learn, NumPy, Pandas, Joblib.
-* **Framework Web:** FastAPI, Uvicorn (Servidor ASGI).
-* **Infraestrutura:** Git, GitHub, Railway (PaaS).
+* **Web & Interface:** FastAPI, Uvicorn, Streamlit, Requests.
+* **Infraestrutura:** Git, GitHub, Railway (PaaS), Docker (implícito).
 
-## 📊 Como a API funciona?
+## 📊 Endpoints da API
+A API recebe dados climáticos e temporais via método **POST** no endpoint `/predict`.
 
-A API expõe um endpoint principal:
-* `POST /predict`: Recebe um JSON com variáveis climáticas (Temperatura, Humidade, Velocidade do Vento, etc.) e retorna a previsão de consumo energético em tempo real.
-
-**Exemplo de entrada (JSON):**
+**Exemplo de Payload (JSON):**
 ```json
 {
   "lights": 10,
@@ -54,3 +63,6 @@ A API expõe um endpoint principal:
 
 4. Inicie o servidor:
    uvicorn app:app --reload
+
+5. Execute o Dashboard
+   streamlit run dashboard.py
